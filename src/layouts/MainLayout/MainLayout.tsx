@@ -1,5 +1,6 @@
 import React from "react";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
+import "./MainLayout.scss";
 
 export const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({
   children,
