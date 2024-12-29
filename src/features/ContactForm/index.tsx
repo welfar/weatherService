@@ -78,22 +78,22 @@ export const ContactForm: React.FC = () => {
     e.preventDefault();
     if (isFormValid) {
       setIsSubmitted(true);
+      setFormData({
+        name: "",
+        birthDate: "",
+        city: "",
+        email: "",
+        phone: "",
+      });
+      setFormErrors({
+        name: "",
+        birthDate: "",
+        city: "",
+        email: "",
+        phone: "",
+      });
 
       setTimeout(() => {
-        setFormData({
-          name: "",
-          birthDate: "",
-          city: "",
-          email: "",
-          phone: "",
-        });
-        setFormErrors({
-          name: "",
-          birthDate: "",
-          city: "",
-          email: "",
-          phone: "",
-        });
         setIsSubmitted(false);
       }, 3000);
     }
@@ -105,7 +105,9 @@ export const ContactForm: React.FC = () => {
     <form className="contact-form" onSubmit={handleSubmit}>
       <h2>{text.titleContactForm}</h2>
       {isSubmitted && (
-        <p className="success-message">¡{text.successMessage}!</p>
+        <div className="container-success-message">
+          <p className="success-message">¡{text.successMessage}!</p>
+        </div>
       )}
 
       <label>

@@ -26,9 +26,16 @@
     }
   }
 
+  .container-success-message {
+    background-color: green;
+    border-radius: 4px;
+  }
+
   .success-message {
-    color: green;
+    font-weight: bold;
+    color: white;
     margin-bottom: 15px;
+    padding: 8px;
   }
 
   button {
