@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Sidebar } from "../../components/SideBar/SideBar";
+import { Sidebar } from "../../components/SideBar";
 import { ContactForm } from "../../features/ContactForm";
 import "./SecondaryLayout.scss";
 
@@ -13,7 +13,7 @@ export const SecondaryLayout: React.FC<React.PropsWithChildren<{}>> = () => {
 
   const handleContactClick = () => {
     console.log(`Navegando`);
-    navigate("/contact-us");
+    navigate("/contact");
   };
 
   return (

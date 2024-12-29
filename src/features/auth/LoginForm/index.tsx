@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../context/AppContext";
 import "./LoginForm.scss";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
 export const LoginForm: React.FC = () => {
-  const { language } = useAppContext();
+  const { language, login } = useAppContext();
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [formErrors, setFormErrors] = useState({
@@ -47,7 +50,14 @@ export const LoginForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login data:", formData);
+
+    if (!isFormValid) return;
+
+    login(formData.email);
+
+    navigate("/contact");
+
+    console.log("Login data saved to cookie:", formData);
   };
 
   const labels = {
@@ -119,6 +129,7 @@ export const LoginForm: React.FC = () => {
             type="button"
             className="login-form__toggle-password"
             onClick={togglePasswordVisibility}
+            aria-label={passwordVisible ? "Hide password" : "Show password"}
           >
             {passwordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
           </button>

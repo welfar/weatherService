@@ -5,7 +5,8 @@ import "./MainLayout.scss";
 export const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({
   children,
 }) => {
-  const { language, setLanguage, translations } = useAppContext();
+  const { language, setLanguage, translations, isAuthenticated, logout } =
+    useAppContext();
 
   return (
     <div className="main-layout">
@@ -24,6 +25,16 @@ export const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({
             <option value="es">Español</option>
           </select>
         </div>
+
+        {isAuthenticated && (
+          <button
+            className="main-layout__logout"
+            onClick={logout}
+            title={language === "en" ? "Log out" : "Cerrar sesión"}
+          >
+            {language === "en" ? "Log out" : "Cerrar sesión"}
+          </button>
+        )}
       </header>
 
       <main className="main-layout__login">{children}</main>
