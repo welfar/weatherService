@@ -8,15 +8,15 @@ export const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const cookies = new Cookies();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAppContext();
+  const { isAuthenticated, authChecked } = useAppContext();
 
   useEffect(() => {
     const userSession = cookies.get("userSession");
 
-    if (!userSession || !isAuthenticated) {
+    if (!userSession || (authChecked && !isAuthenticated)) {
       navigate("/");
     }
-  }, [isAuthenticated, navigate]);
+  }, [authChecked, isAuthenticated, navigate]);
 
   return <>{children}</>;
 };

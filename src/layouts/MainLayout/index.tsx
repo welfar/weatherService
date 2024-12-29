@@ -1,11 +1,12 @@
 import React from "react";
 import { useAppContext } from "../../context/AppContext";
 import "./MainLayout.scss";
+import { LogoutButton } from "../../components/LogoutButton";
 
 export const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({
   children,
 }) => {
-  const { language, setLanguage, translations, isAuthenticated, logout } =
+  const { language, setLanguage, translations, isAuthenticated } =
     useAppContext();
 
   return (
@@ -26,15 +27,7 @@ export const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({
           </select>
         </div>
 
-        {isAuthenticated && (
-          <button
-            className="main-layout__logout"
-            onClick={logout}
-            title={language === "en" ? "Log out" : "Cerrar sesión"}
-          >
-            {language === "en" ? "Log out" : "Cerrar sesión"}
-          </button>
-        )}
+        {isAuthenticated && <LogoutButton />}
       </header>
 
       <main className="main-layout__login">{children}</main>
