@@ -56,8 +56,6 @@ export const LoginForm: React.FC = () => {
     login(formData.email);
 
     navigate("/contact");
-
-    console.log("Login data saved to cookie:", formData);
   };
 
   const labels = {
