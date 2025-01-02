@@ -1,0 +1,118 @@
+.city-weather {
+  color: #333;
+  padding: 16px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    margin-bottom: 16px;
+    color: #4a90e2;
+  }
+
+  .current-weather {
+    text-align: center;
+    padding: 16px;
+    background: #e3f2fd;
+    border-radius: 10px;
+    margin-bottom: 16px;
+
+    img.weather-icon {
+      width: 80px;
+      height: 80px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    p:first-of-type {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+  .hourly-forecast {
+    h2 {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    &__container {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+    }
+
+    ul {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+      padding: 0;
+
+      li {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        scroll-snap-align: start;
+
+        p {
+          margin: 5px 0;
+          font-size: 14px;
+
+          &:first-of-type {
+            font-size: 12px;
+            color: #888;
+          }
+
+          &:nth-of-type(2) {
+            font-weight: bold;
+            color: #4a90e2;
+          }
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.weather-loading {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  color: #4a90e2;
+  font-size: 3rem;
+  font-weight: bold;
+}

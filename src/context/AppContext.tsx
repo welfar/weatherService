@@ -1,23 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-
-interface Translation {
-  languageLabel: string;
-  cities: string[];
-  contact: string;
-  errorContext: string;
-  loginRequired: string;
-}
-
-interface AppContextProps {
-  language: string;
-  setLanguage: (language: string) => void;
-  translations: Record<string, Translation>;
-  isAuthenticated: boolean;
-  authChecked: boolean;
-  login: (email: string) => void;
-  logout: () => void;
-}
+import { WeatherCache } from "../utils/weatherCache";
+import { AppContextProps, Translation } from "../interfaces";
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
@@ -54,6 +38,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const logout = () => {
     cookies.remove("userSession", { path: "/" });
+    WeatherCache.clearCache();
     setIsAuthenticated(false);
     setAuthChecked(false);
   };
