@@ -1,17 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
+import { SidebarProps } from "../../interfaces";
 import "./SideBar.scss";
 
-interface SidebarProps {
-  onSelectCity?: (city: string) => void;
-  onContactClick?: () => void;
-}
-
-export const Sidebar: React.FC<SidebarProps> = ({
-  onSelectCity,
-  onContactClick,
-}) => {
+export const Sidebar: React.FC<SidebarProps> = ({ onSelectCity }) => {
   const { language, translations } = useAppContext();
+  const navigate = useNavigate();
 
   const cities = translations[language].cities;
 
@@ -19,6 +14,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
     if (onSelectCity) {
       onSelectCity(city);
     }
+    navigate(`/city/${city}`);
+  };
+
+  const handleContactClick = () => {
+    navigate("/contact");
   };
 
   return (
@@ -37,7 +37,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           ))}
 
           <li>
-            <button className="sidebar-link" onClick={onContactClick}>
+            <button className="sidebar-link" onClick={handleContactClick}>
               {language === "en" ? "Contact" : "Contacto"}
             </button>
           </li>
