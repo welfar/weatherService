@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #007bff;
+    background-color: #4a90e2;
     color: white;
     height: 60px;
   }
@@ -22,6 +22,7 @@
   &__language-selector {
     display: flex;
     align-items: center;
+    gap: 1rem;
 
     label {
       margin-right: 0.5rem;
@@ -44,9 +45,16 @@
   }
 
   &__login {
+    width: 100%;
     height: 368px;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
   }
 }
