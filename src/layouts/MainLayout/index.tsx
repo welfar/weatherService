@@ -1,7 +1,8 @@
 import React from "react";
 import { useAppContext } from "../../context/AppContext";
-import "./MainLayout.scss";
 import { LogoutButton } from "../../components/LogoutButton";
+import { Sidebar } from "../../components/SideBar";
+import "./MainLayout.scss";
 
 export const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({
   children,
@@ -25,12 +26,16 @@ export const MainLayout: React.FC<React.PropsWithChildren<{}>> = ({
             <option value="en">English</option>
             <option value="es">Español</option>
           </select>
-        </div>
 
-        {isAuthenticated && <LogoutButton />}
+          {isAuthenticated && <LogoutButton />}
+        </div>
       </header>
 
-      <main className="main-layout__login">{children}</main>
+      <div className="main-layout__content">
+        {isAuthenticated && <Sidebar />}
+
+        <main className="main-layout__login">{children}</main>
+      </div>
     </div>
   );
 };

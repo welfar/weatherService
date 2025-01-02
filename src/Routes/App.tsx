@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LoginPage } from "../pages/Login/LoginPage";
-import { ContactPage } from "../pages/Contact/ContactPage";
+import { SideBarPages } from "../pages/SideBar/SideBarPages";
 import { NotFoundPage } from "../pages/NotFound/NotFoundPage";
 import { ProtectedRoute } from "../features/ProtectedRoute";
 import "../App.scss";
@@ -12,10 +12,10 @@ export const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route
-          path="contact"
+          path="/*"
           element={
             <ProtectedRoute>
-              <ContactPage />
+              <SideBarPages />
             </ProtectedRoute>
           }
         />
