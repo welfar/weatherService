@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../../context/AppContext";
-import "./LoginForm.scss";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { useAppContext } from "../../../context/AppContext";
+import "./LoginForm.scss";
 
 export const LoginForm: React.FC = () => {
-  const { language, login } = useAppContext();
+  const { language, login, translations } = useAppContext();
 
   const navigate = useNavigate();
 
@@ -55,7 +55,8 @@ export const LoginForm: React.FC = () => {
 
     login(formData.email);
 
-    navigate("/contact");
+    const firstCity = translations[language].cities[0];
+    navigate(`/city/${firstCity}`);
   };
 
   const labels = {
