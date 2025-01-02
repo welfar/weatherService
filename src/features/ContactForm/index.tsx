@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ContactForm.scss";
 import { useAppContext } from "../../context/AppContext";
+import { ValidationMessage } from "../../components/ValidationMessage";
 
 export const ContactForm: React.FC = () => {
   const { language } = useAppContext();
@@ -19,30 +20,46 @@ export const ContactForm: React.FC = () => {
     email: "",
     phone: "",
   });
+  const [isValidationActive, setIsValidationActive] = useState(false);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    if (isValidationActive) {
+      validateField(name, value);
+    }
+  };
 
   const validateField = (name: string, value: string) => {
     let error = "";
 
-    if (name === "email" && !/\S+@\S+\.\S+/.test(value)) {
-      error = "El correo electrónico no es válido.";
-    } else if (name === "phone" && !/^\d+$/.test(value)) {
-      error = "El teléfono solo debe contener números.";
+    if (name === "email") {
+      if (!value) {
+        error = text.emailRequired;
+      } else if (!/\S+@\S+\.\S+/.test(value)) {
+        error = text.emailInvalid;
+      }
+    } else if (name === "phone") {
+      if (!value) {
+        error = text.fieldRequired;
+      } else if (!/^\d+$/.test(value)) {
+        error = text.invalidNumber;
+      }
+    } else if (name === "city") {
+      if (!value) {
+        error = text.fieldRequired;
+      }
     } else if (!value) {
-      error = "Este campo es obligatorio.";
+      error = text.fieldRequired;
     }
 
     setFormErrors((prevErrors) => ({
       ...prevErrors,
       [name]: error,
     }));
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    validateField(name, value);
   };
 
   const labels = {
@@ -55,6 +72,10 @@ export const ContactForm: React.FC = () => {
       email: "Email",
       phone: "Phone",
       submit: "Send",
+      emailRequired: "Email is required",
+      emailInvalid: "Email is invalid",
+      invalidNumber: "The phone should only contain numbers.",
+      fieldRequired: "This field is required.",
     },
     es: {
       titleContactForm: "Formulario de Contacto",
@@ -65,6 +86,10 @@ export const ContactForm: React.FC = () => {
       email: "Correo Electrónico",
       phone: "Teléfono",
       submit: "Enviar",
+      emailRequired: "El correo electrónico es obligatorio",
+      emailInvalid: "El correo electrónico no es válido",
+      invalidNumber: "El teléfono solo debe contener números.",
+      fieldRequired: "Este campo es obligatorio.",
     },
   };
 
@@ -101,13 +126,22 @@ export const ContactForm: React.FC = () => {
 
   const today = new Date().toISOString().split("T")[0];
 
+  useEffect(() => {
+    setIsValidationActive(true);
+
+    if (isValidationActive) {
+      validateField("name", formData.name);
+      validateField("email", formData.email);
+      validateField("phone", formData.phone);
+      validateField("city", formData.city);
+    }
+  }, [language]);
+
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
       <h2>{text.titleContactForm}</h2>
       {isSubmitted && (
-        <div className="container-success-message">
-          <p className="success-message">¡{text.successMessage}!</p>
-        </div>
+        <ValidationMessage message={text.successMessage} type="success" />
       )}
 
       <label>
@@ -118,7 +152,9 @@ export const ContactForm: React.FC = () => {
           value={formData.name}
           onChange={handleChange}
         />
-        {formErrors.name && <span className="error">{formErrors.name}</span>}
+        {formErrors.name && (
+          <ValidationMessage message={formErrors.name} type="error" />
+        )}
       </label>
 
       <div className="contact-form__sub-container">
@@ -132,7 +168,7 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
           />
           {formErrors.birthDate && (
-            <span className="error">{formErrors.birthDate}</span>
+            <ValidationMessage message={formErrors.birthDate} type="error" />
           )}
         </label>
 
@@ -144,7 +180,9 @@ export const ContactForm: React.FC = () => {
             value={formData.city}
             onChange={handleChange}
           />
-          {formErrors.city && <span className="error">{formErrors.city}</span>}
+          {formErrors.city && (
+            <ValidationMessage message={formErrors.city} type="error" />
+          )}
         </label>
       </div>
 
@@ -156,7 +194,9 @@ export const ContactForm: React.FC = () => {
           value={formData.email}
           onChange={handleChange}
         />
-        {formErrors.email && <span className="error">{formErrors.email}</span>}
+        {formErrors.email && (
+          <ValidationMessage message={formErrors.email} type="error" />
+        )}
       </label>
 
       <label>
@@ -167,7 +207,9 @@ export const ContactForm: React.FC = () => {
           value={formData.phone}
           onChange={handleChange}
         />
-        {formErrors.phone && <span className="error">{formErrors.phone}</span>}
+        {formErrors.phone && (
+          <ValidationMessage message={formErrors.phone} type="error" />
+        )}
       </label>
 
       <button type="submit" disabled={!isFormValid}>
