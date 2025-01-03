@@ -1,3 +1,7 @@
+# About
+
+This application is developed in ReactJS. Your goal is to get weather predictions for three different cities, accessible after logging in. Predictions are presented in three-hour intervals, covering a period of up to 24 hours.
+
 # How to start?
 
 To run the project, clone the repository, open the project in your local environment and execute the following commands:
