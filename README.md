@@ -17,4 +17,4 @@ You will also see any lint errors in the console.
 
 # Application deployment
 
-To see the application working, you can access the following link: [https://welfar.github.io/](https://welfar.github.io/)
+To see the application working, you can access the following link: [https://welfar.github.io/weatherService/](https://welfar.github.io/weatherService/)
