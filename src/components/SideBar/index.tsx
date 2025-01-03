@@ -14,11 +14,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onSelectCity }) => {
     if (onSelectCity) {
       onSelectCity(city);
     }
-    navigate(`/city/${city}`);
+    navigate(`/app/city/${city}`);
   };
 
   const handleContactClick = () => {
-    navigate("/contact");
+    navigate("/app/contact");
   };
 
   return (

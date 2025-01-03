@@ -12,7 +12,7 @@ export const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route
-          path="/*"
+          path="/app/*"
           element={
             <ProtectedRoute>
               <SideBarPages />

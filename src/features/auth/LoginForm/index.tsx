@@ -56,7 +56,7 @@ export const LoginForm: React.FC = () => {
     login(formData.email);
 
     const firstCity = translations[language].cities[0];
-    navigate(`/city/${firstCity}`);
+    navigate(`/app/city/${firstCity}`);
   };
 
   const labels = {

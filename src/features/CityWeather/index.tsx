@@ -23,7 +23,7 @@ export const CityWeather: React.FC = () => {
           q: cityName,
         });
 
-        const hourlyData = data.list.slice(0, 8); // Predicción para las próximas 24 horas (8 intervalos de 3 horas)
+        const hourlyData = data.list.slice(0, 8);
 
         setWeather(hourlyData);
         setError(null);
