@@ -14,3 +14,7 @@ Open [https://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+# Application deployment
+
+To see the application working, you can access the following link: [https://welfar.github.io/](https://welfar.github.io/)
