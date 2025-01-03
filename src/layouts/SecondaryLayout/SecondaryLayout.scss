@@ -1,0 +1,22 @@
+.secondary-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  height: inherit;
+
+  &__content {
+    flex-grow: 1;
+    padding: 16px;
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+    }
+  }
+}

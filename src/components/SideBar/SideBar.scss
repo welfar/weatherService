@@ -1,0 +1,36 @@
+.sidebar {
+  padding: 20px;
+  width: 250px;
+  height: calc(100vh - 60px);
+  background: linear-gradient(to bottom, #4a90e2, #1abc9c, #f1c40f);
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 0 0px rgba(0, 0, 0, 0.1);
+
+  nav {
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 15px;
+
+        .sidebar-link {
+          width: 100%;
+          background: none;
+          border: none;
+          color: #fff;
+          text-align: left;
+          font-size: 16px;
+          cursor: pointer;
+          padding: 10px;
+          border-radius: 4px;
+
+          &:hover {
+            background-color: #34495e;
+          }
+        }
+      }
+    }
+  }
+}
