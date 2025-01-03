@@ -23,6 +23,7 @@ REACT_APP_API_KEY=your_api_key_here \
 REACT_APP_BASE_URL=https://api.openweathermap.org/data/2.5 \
 REACT_APP_DEFAULT_UNITS=metric
 
+After the environment variables have been aggravated, the project must be run again.
 
 ### Obtaining the API Key
 
