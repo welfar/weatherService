@@ -1,0 +1,12 @@
+name: Api Secret
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2  
+      - name: api secret
+        run:  echo ${{ secrets.API_KEY }} 
