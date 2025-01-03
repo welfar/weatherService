@@ -19,8 +19,8 @@ You will also see any lint errors in the console.
 
 To run this project, you need to create a `.env` file in the root directory with the following variables:
 
-REACT_APP_API_KEY=your_api_key_here
-REACT_APP_BASE_URL=https://api.example.com
+REACT_APP_API_KEY=your_api_key_here \
+REACT_APP_BASE_URL=https://api.openweathermap.org/data/2.5 \
 REACT_APP_DEFAULT_UNITS=metric
 
 
