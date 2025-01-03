@@ -8,16 +8,16 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   h2 {
-    margin-bottom: 16px;
+    margin-bottom: 4px;
     color: #4a90e2;
   }
 
   .current-weather {
     text-align: center;
-    padding: 16px;
+    padding: 8px;
     background: #e3f2fd;
     border-radius: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
     img.weather-icon {
       width: 80px;
@@ -38,14 +38,13 @@
   .hourly-forecast {
     h2 {
       text-align: left;
-      margin-bottom: 15px;
+      margin-bottom: 0px;
     }
 
     &__container {
       display: flex;
-      gap: 10px;
       overflow-x: auto;
-      padding: 10px 0;
+      padding: 4px 0;
       scroll-snap-type: x mandatory;
       scrollbar-width: thin;
       scrollbar-color: #ccc transparent;
@@ -71,14 +70,16 @@
       padding: 0;
 
       li {
+        min-width: 105px;
         flex: 0 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         background: #f9f9f9;
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        padding: 10px;
+        padding: 8px;
         scroll-snap-align: start;
 
         p {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_CONFIG } from "../config/ApiConfig";
 
-export const GetWeather = {
+export const GetWeatherByCity = {
   async get(endpoint: string, params: Record<string, any> = {}) {
     try {
       const response = await axios.get(`${API_CONFIG.BASE_URL}${endpoint}`, {

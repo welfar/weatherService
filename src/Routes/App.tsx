@@ -4,7 +4,7 @@ import { LoginPage } from "../pages/Login/LoginPage";
 import { SideBarPages } from "../pages/SideBar/SideBarPages";
 import { NotFoundPage } from "../pages/NotFound/NotFoundPage";
 import { ProtectedRoute } from "../features/ProtectedRoute";
-import "../App.scss";
+import "../styles/App.scss";
 
 export const App: React.FC = () => {
   return (

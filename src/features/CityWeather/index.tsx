@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
-import { GetWeather } from "../../services/Weather.service";
+import { GetWeatherByCity } from "../../services/Weather.service";
 import { WeatherCache } from "../../utils/weatherCache";
 import { WeatherForecast } from "../../interfaces";
 import "./CityWeather.scss";
@@ -28,7 +28,7 @@ export const CityWeather: React.FC = () => {
     const fetchWeather = async () => {
       try {
         setLoading(true);
-        const data = await GetWeather.get("/forecast", {
+        const data = await GetWeatherByCity.get("/forecast", {
           q: cityName,
         });
 
@@ -91,13 +91,20 @@ export const CityWeather: React.FC = () => {
             </h2>
             <div className="hourly-forecast__container">
               <ul>
-                {weather.map((forecast, index) => (
-                  <li className="forecast-card" key={index}>
-                    <p>{new Date(forecast.dt * 1000).toLocaleTimeString()}</p>
-                    <p>Temp: {forecast.main.temp}°C</p>
-                    <p>{forecast.weather[0].description}</p>
-                  </li>
-                ))}
+                {weather.map((forecast, index) => {
+                  return (
+                    <li className="forecast-card" key={index}>
+                      <p>{new Date(forecast.dt * 1000).toLocaleTimeString()}</p>
+                      <p>{forecast.main.temp}°C</p>
+                      <img
+                        src={iconUrl(forecast.weather[0].icon)}
+                        alt={forecast.weather[0].description}
+                        className="weather-icon"
+                      />
+                      <p>{forecast.weather[0].description}</p>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
