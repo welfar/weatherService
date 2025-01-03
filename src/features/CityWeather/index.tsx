@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import { GetWeatherByCity } from "../../services/Weather.service";
-import { WeatherCache } from "../../utils/weatherCache";
 import { WeatherForecast } from "../../interfaces";
 import "./CityWeather.scss";
 
@@ -17,14 +16,6 @@ export const CityWeather: React.FC = () => {
   useEffect(() => {
     if (!cityName) return;
 
-    const cachedWeather = WeatherCache.getCache()[cityName];
-    if (cachedWeather) {
-      setWeather([cachedWeather]);
-      setLoading(false);
-      setError(null);
-      return;
-    }
-
     const fetchWeather = async () => {
       try {
         setLoading(true);
@@ -35,7 +26,6 @@ export const CityWeather: React.FC = () => {
         const hourlyData = data.list.slice(0, 8); // Predicción para las próximas 24 horas (8 intervalos de 3 horas)
 
         setWeather(hourlyData);
-        WeatherCache.setCache(cityName, hourlyData);
         setError(null);
       } catch (err) {
         console.error("Error fetching weather data:", err);

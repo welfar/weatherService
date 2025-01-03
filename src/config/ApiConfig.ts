@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  BASE_URL: "https://api.openweathermap.org/data/2.5",
-  API_KEY: "3845e5c21872ee284dcbd3e09e69063d",
-  DEFAULT_UNITS: "metric",
+  BASE_URL: process.env.REACT_APP_BASE_URL,
+  API_KEY: process.env.REACT_APP_API_KEY,
+  DEFAULT_UNITS: process.env.REACT_APP_DEFAULT_UNITS,
 };

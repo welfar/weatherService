@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import { WeatherCache } from "../utils/weatherCache";
 import { AppContextProps, Translation } from "../interfaces";
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
@@ -38,7 +37,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const logout = () => {
     cookies.remove("userSession", { path: "/" });
-    WeatherCache.clearCache();
     setIsAuthenticated(false);
     setAuthChecked(false);
   };
